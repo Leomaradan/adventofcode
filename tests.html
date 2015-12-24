@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Advent of Code tests</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.20.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-1.20.0.js"></script>
+  <script src = "http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+  <script src="days.js" type="text/javascript"></script>
+  <script>
+
+    QUnit.module( "day 1" );
+    QUnit.test( "basic tests", function( assert ) {
+
+      assert.equal( day1.run('(())')[0], "floor: 0");
+      assert.equal( day1.run('()()')[0], "floor: 0");
+
+      assert.equal( day1.run('(((')[0], "floor: 3");
+      assert.equal( day1.run('(()(()(')[0], "floor: 3");
+
+      assert.equal( day1.run('))(((((')[0], "floor: 3");
+
+      assert.equal( day1.run('())')[0], "floor: -1");
+      assert.equal( day1.run('))(')[0], "floor: -1");
+
+      assert.equal( day1.run(')))')[0], "floor: -3");
+      assert.equal( day1.run(')())())')[0], "floor: -3");
+
+      assert.equal( day1.run(')')[1], "position: 1");
+      assert.equal( day1.run('()())')[1], "position: 5");      
+      assert.equal( day1.run('()())()(()')[1], "position: 5");      
+    });
+
+    QUnit.module( "day 2" );
+
+    QUnit.test( "test presents", function ( assert ) {
+      assert.equal(day2.present(2,3,4), 52);
+      assert.equal(day2.extra(2,3,4), 6);
+
+      assert.equal(day2.present(1,1,10), 42);
+      assert.equal(day2.extra(1,1,10), 1);
+    });
+
+    QUnit.test( "test run", function ( assert ) {
+      var input = '2x4x3' + String.fromCharCode(10) + '1x1x10';
+      assert.equal(day2.run(input)[0], "total length: " + (58 + 43));
+      assert.equal(day2.run(input)[1], "total ribbon: " + (34 + 14));     
+    });
+
+    QUnit.test( "ribbon", function ( assert ) {
+      assert.equal(day2.ribbon(2,3,4), 34);
+      assert.equal(day2.ribbon(1,1,10), 14);
+    });   
+
+    QUnit.module( "day 3" );
+
+    QUnit.test( "test move", function ( assert ) {
+      assert.equal(day3.run('>')[0], "number of houses (year 1): " + 2);
+      assert.equal(day3.run('^>v<')[0], "number of houses (year 1): " + 4);
+      assert.equal(day3.run('^v^v^v^v^v')[0], "number of houses (year 1): " + 2);
+
+      assert.equal(day3.run('^v')[1], "number of houses (year 2): " + 3);
+      assert.equal(day3.run('^>v<')[1], "number of houses (year 2): " + 3);
+      assert.equal(day3.run('^v^v^v^v^v')[1], "number of houses (year 2): " + 11);      
+    });   
+
+    QUnit.module( "day 4" );  
+
+    QUnit.test( "test md5", function ( assert ) {
+      assert.equal(md5('abcdef609043'), '000001dbbfa3a5c83a2d506429c7b00e');
+      assert.equal(md5('pqrstuv1048970'), '000006136ef2ff3b291c85725f17325c');
+    });
+
+    /*.test( "test bruteforce", function ( assert ) {
+      assert.equal(day4.bruteforce('abcdef', '00000'), '609043');
+      assert.equal(day4.bruteforce('pqrstuv', '00000'), '1048970');
+    });*/
+
+    QUnit.module( "day 5" );  
+
+    QUnit.test( "test rules", function ( assert ) {
+
+      assert.ok(day5.hasThreeVowels('ugknbfddgicrmopn'));
+      assert.ok(day5.hasDoubleLetter('ugknbfddgicrmopn'));
+      assert.ok(day5.hasNoForbidenString('ugknbfddgicrmopn'));
+
+      assert.ok(day5.hasThreeVowels('aaa'));
+      assert.ok(day5.hasDoubleLetter('aaa'));
+      assert.ok(day5.hasNoForbidenString('aaa'));      
+
+      assert.ok(day5.hasThreeVowels('jchzalrnumimnmhp'));
+      assert.notOk(day5.hasDoubleLetter('jchzalrnumimnmhp'));
+      assert.ok(day5.hasNoForbidenString('jchzalrnumimnmhp'));      
+
+      assert.ok(day5.hasThreeVowels('haegwjzuvuyypxyu'));
+      assert.ok(day5.hasDoubleLetter('haegwjzuvuyypxyu'));
+      assert.notOk(day5.hasNoForbidenString('haegwjzuvuyypxyu'));   
+
+      assert.notOk(day5.hasThreeVowels('dvszwmarrgswjxmb'));
+      assert.ok(day5.hasDoubleLetter('dvszwmarrgswjxmb'));
+      assert.ok(day5.hasNoForbidenString('dvszwmarrgswjxmb'));                
+    });
+
+    QUnit.test("test run", function ( assert ) {
+      var input = 'ugknbfddgicrmopn' + String.fromCharCode(10) 
+                  + 'aaa' + String.fromCharCode(10)
+                  + 'jchzalrnumimnmhp' + String.fromCharCode(10)
+                  + 'haegwjzuvuyypxyu' + String.fromCharCode(10)
+                  + 'dvszwmarrgswjxmb' + String.fromCharCode(10);
+
+      assert.equal(day5.run(input), "nice strings: 2");
+    });
+
+    /*
+    QUnit.test( "description", function ( assert ) {
+
+    });
+    */
+
+  </script>
+</body>
+</html>

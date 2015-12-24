@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Advent of Code</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+<div>
+
+<div class="container">
+  <select id="selectday">
+    <option value="day1" selected>Day 1</option>
+    <option value="day2">Day 2</option>
+    <option value="day3">Day 3</option>
+    <option value="day4">Day 4</option>
+    <option value="day5">Day 5</option>
+    <option value="day6">Day 6</option>
+    <option value="day7">Day 7</option>
+    <option value="day8">Day 8</option>
+    <option value="day9">Day 9</option>
+    <option value="day10">Day 10</option>
+    <option value="day11">Day 11</option>
+    <option value="day12">Day 12</option>
+    <option value="day13">Day 13</option>
+    <option value="day14">Day 14</option>
+    <option value="day15">Day 15</option>
+    <option value="day16">Day 16</option>
+    <option value="day17">Day 17</option>
+    <option value="day18">Day 18</option>
+    <option value="day19">Day 19</option>
+    <option value="day20">Day 20</option>
+    <option value="day21">Day 21</option>
+    <option value="day22">Day 22</option>
+    <option value="day23">Day 23</option>
+    <option value="day24">Day 24</option>
+    <option value="day25">Day 25</option>
+  </select>
+<hr>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      Input<br>
+      <textarea id="input" class="form-control" rows="8"></textarea><br>
+      <button id="run">Run</button>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div id="result" class="panel-body">
+
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <script src = "http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+
+  <script src="days.js?v=1" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#run').on('click', function() {
+            var test = $("#selectday option:selected").val(),
+                input = $("#input").val();
+
+            var result = window[test].run(input);
+
+            var output = $("#result");
+            for(var line in result) {
+                output.append(result[line] + "<br>");
+            }
+        });
+    });
+  </script>
+</body>
+</html>
